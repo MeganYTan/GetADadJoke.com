@@ -43,8 +43,10 @@ describe('ShareButtonComponent', () => {
 
   it('should share joke with URL if jokeId is not in url', () => {
     component.jokeId = '123';
+    const activatedRoute = TestBed.inject(ActivatedRoute);
+    activatedRoute.snapshot.paramMap.get = (param: string) => null;
     component.shareJoke();
-    const expectedUrl = `${window.location.href}/${component.jokeId}`;
+    const expectedUrl = `${window.location.origin}/joke/${component.jokeId}`;
     expect(mockClipboard).toHaveBeenCalledWith(expectedUrl);
   })
 });

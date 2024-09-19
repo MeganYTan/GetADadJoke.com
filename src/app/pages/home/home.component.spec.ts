@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import { By } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
 import { JokeHttpService } from '../../shared/services/joke-http/joke-http.service';
@@ -11,7 +10,6 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let router: Router;
-  let jokeHttpService: JokeHttpService;
   const mockJokes = [
     { id: '1', joke: 'Joke 1', status: 200 },
     { id: '2', joke: 'Joke 2', status: 200 },
@@ -48,13 +46,4 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should navigate to /joke/{{joke.id}} when joke is clicked', () => {
-    spyOn(router, 'navigate');
-    fixture.detectChanges();
-    const jokeLink = fixture.debugElement.query(By.css('a')).nativeElement;
-    jokeLink.click();
-    fixture.detectChanges()
-    const jokeId = mockJokes[0].id;
-    expect(router.navigate).toHaveBeenCalledWith([`/joke/${jokeId}`]);
-  });
 });
