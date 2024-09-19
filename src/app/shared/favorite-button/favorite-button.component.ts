@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FavoritesService } from '../services/favorites/favorites.service';
+import { Joke } from '../../models/joke.model';
 
 @Component({
   selector: 'app-favorite-button',
-  standalone: true,
-  imports: [],
   templateUrl: './favorite-button.component.html',
   styleUrl: './favorite-button.component.css'
 })
-export class FavoriteButtonComponent {
+export class FavoriteButtonComponent implements OnInit{
+  @Input() joke!: Joke;
+  isFavorite: boolean = false;
+  constructor(
+    private favoritesService: FavoritesService
+  ){}
+  ngOnInit(): void {
+      this.isFavorite = this.favoritesService.isFavorite(this.joke.id);
+  }
 
+  addToFavorite(): void {
+    this.isFavorite ? this.favoritesService.removeFavorite(this.joke.id) : this.favoritesService.addFavorite(this.joke.id, this.joke.joke);
+    this.isFavorite = ! this.isFavorite;
+  }
 }

@@ -1,1 +1,4 @@
-<p>favorite-button works!</p>
+<button class="btn btn-outline-primary" (click) = "addToFavorite()">
+    <i class="bi" [ngClass] ="isFavorite ? 'bi-heart-fill' : 'bi-heart'"></i>
+    Favorite
+</button>

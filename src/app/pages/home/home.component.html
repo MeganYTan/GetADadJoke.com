@@ -4,8 +4,9 @@
         class="d-flex justify-content-between joke-list-item">
         <a routerLink = "/joke/{{joke.id}}">{{ joke.joke }}</a>
         <div>
-            <app-share-button></app-share-button>
-            <app-copy-button></app-copy-button>
+            <app-favorite-button [joke] = "joke"></app-favorite-button>
+            <app-share-button [jokeId] = "joke.id"></app-share-button>
+            <app-copy-button [jokeText] = "joke.joke"></app-copy-button>
         </div>
     </div>
     <hr>

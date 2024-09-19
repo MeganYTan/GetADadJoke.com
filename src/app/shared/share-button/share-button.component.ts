@@ -13,11 +13,12 @@ export class ShareButtonComponent {
   ) {}
   shareJoke() {
     const urlJokeId = this.route.snapshot.paramMap.get('jokeId');
-    if (!urlJokeId) {
-      // get permanent url
-      navigator.clipboard.writeText(`${window.location.href}/${this.jokeId}`);
-    } else {
+    if (urlJokeId) {
+      // just share the url
       navigator.clipboard.writeText(window.location.href);
+    } else {
+      // get permanent url
+      navigator.clipboard.writeText(`${window.location.origin}/joke/${this.jokeId}`);
     }
   }
 }

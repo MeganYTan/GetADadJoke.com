@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     FavoriteButtonComponent,
     CopyButtonComponent,
     ShareButtonComponent,
-    JokeListComponent
+    JokeListComponent,
+    ShareButtonComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     FavoriteButtonComponent,
     CopyButtonComponent,
     ShareButtonComponent,
-    JokeListComponent
+    JokeListComponent,
+    ShareButtonComponent
   ]
 })
 export class SharedModule { }
