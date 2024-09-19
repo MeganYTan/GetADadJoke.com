@@ -21,6 +21,11 @@ export const routes: Routes = [
         component: FavoritesComponent
     },
     {
+        path:'joke',
+        title: 'Joke',
+        component: JokePageComponent
+    },
+    {
         path:'joke/:id',
         title: 'Joke',
         component: JokePageComponent
