@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CommonModule, SharedModule],
   templateUrl: './joke-page.component.html',
-  styleUrl: './joke-page.component.css'
 })
 export class JokePageComponent implements OnInit, OnDestroy {
   joke: Joke | undefined;

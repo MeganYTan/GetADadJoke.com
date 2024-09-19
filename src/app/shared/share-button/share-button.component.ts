@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-share-button',
   templateUrl: './share-button.component.html',
-  styleUrl: './share-button.component.css'
 })
 export class ShareButtonComponent {
   @Input() jokeId: string = '';

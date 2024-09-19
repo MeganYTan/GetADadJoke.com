@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: '<h1 class = "text-center">Uh oh... Nothing here</h1>',
-  styleUrl: './page-not-found.component.css'
 })
 export class PageNotFoundComponent {
 

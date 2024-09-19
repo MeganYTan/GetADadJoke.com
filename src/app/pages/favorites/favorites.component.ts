@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [SharedModule, NgxPaginationModule, CommonModule, RouterModule],
   templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.css'
 })
 export class FavoritesComponent implements OnInit{
   jokeList: Joke[] = [];

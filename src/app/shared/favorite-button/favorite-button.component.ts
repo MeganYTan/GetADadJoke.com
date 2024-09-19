@@ -5,7 +5,6 @@ import { Joke } from '../../models/joke.model';
 @Component({
   selector: 'app-favorite-button',
   templateUrl: './favorite-button.component.html',
-  styleUrl: './favorite-button.component.css'
 })
 export class FavoriteButtonComponent implements OnInit{
   @Input() joke!: Joke;
