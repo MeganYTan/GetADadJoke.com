@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-page-not-found',
   standalone: true,
   imports: [],
-  templateUrl: './page-not-found.component.html',
+  template: '<h1 class = "text-center">Uh oh... Nothing here</h1>',
   styleUrl: './page-not-found.component.css'
 })
 export class PageNotFoundComponent {
