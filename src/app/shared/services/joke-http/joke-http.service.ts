@@ -1,0 +1,27 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class JokeHttpService {
+
+  private apiUrl = 'https://icanhazdadjoke.com/';
+  private headers = new HttpHeaders({
+    'Accept': 'application/json'
+  });
+  constructor(
+    private http: HttpClient
+  ) { 
+    
+  }
+  getARandomJoke(): Observable<any> {
+   return this.http.get(this.apiUrl, {headers: this.headers});
+  }
+
+  getJokeById(jokeId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${jokeId}`, {headers: this.headers});
+  }
+
+}
