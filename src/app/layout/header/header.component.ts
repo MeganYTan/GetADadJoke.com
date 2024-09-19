@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  term: string = "";
+  constructor(
+    private router: Router
+  ){}
+  searchJokes() {
+    this.router.navigate(['/search'], {
+      queryParams: {term: this.term}
+    });
+  }
 }

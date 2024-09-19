@@ -24,4 +24,7 @@ export class JokeHttpService {
     return this.http.get(`${this.apiUrl}/j/${jokeId}`, {headers: this.headers});
   }
 
+  searchJokes(query: string, page: number = 1): Observable<any> {
+    return this.http.get(`${this.apiUrl}/search?term=${query}&limit=15&page=${page}`, {headers: this.headers});
+  }
 }

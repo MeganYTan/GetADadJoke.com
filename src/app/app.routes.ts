@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { JokePageComponent } from './pages/joke-page/joke-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -13,7 +12,7 @@ export const routes: Routes = [
     {
         path: 'search',
         title: 'Search Results',
-        component: SearchResultsComponent
+        component: HomeComponent
     }, 
     {
         path: 'favorites',

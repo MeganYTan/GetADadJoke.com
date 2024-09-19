@@ -2,10 +2,10 @@
     <div class="container-fluid d-flex">
         <a class="navbar-brand d-none d-lg-block" routerLink="/">GetADadJoke.com</a>
         <!-- Search Bar -->
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "term"  (keydown.enter)="searchJokes()">
+            <button class="btn btn-outline-primary" type="submit" (click) = "searchJokes()">Search</button>
+        </div>
         <!-- Toggle button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
             aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
