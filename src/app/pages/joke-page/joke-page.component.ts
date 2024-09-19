@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Joke } from '../../models/joke.model';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 import { JokeHttpService } from '../../shared/services/joke-http/joke-http.service';
-import { JokeService } from '../../shared/services/joke/joke.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-joke-page',
@@ -13,14 +13,22 @@ import { JokeService } from '../../shared/services/joke/joke.service';
   templateUrl: './joke-page.component.html',
   styleUrl: './joke-page.component.css'
 })
-export class JokePageComponent implements OnInit{
+export class JokePageComponent implements OnInit, OnDestroy {
   joke: Joke | undefined;
+  routerSubscription!: Subscription;
   constructor(
     private jokeHttpService: JokeHttpService,
     private route: ActivatedRoute,
-    private jokeService: JokeService
-  ) {}
+    private router: Router
+  ) { }
   ngOnInit(): void {
+    this.loadJoke();
+    this.routerSubscription = this.router.events
+      .subscribe(() => {
+        this.loadJoke();
+      });
+  }
+  loadJoke(): void {
     var jokeId = this.route.snapshot.paramMap.get('id');
     if(jokeId) {
       this.jokeHttpService.getJokeById(jokeId).subscribe((data) => {
@@ -32,6 +40,8 @@ export class JokePageComponent implements OnInit{
         this.joke = data;
       });
     }
-      
+  }
+  ngOnDestroy(): void {
+      this.routerSubscription.unsubscribe();
   }
 }
