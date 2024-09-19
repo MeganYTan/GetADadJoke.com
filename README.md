@@ -1,27 +1,63 @@
 # Getadadjoke
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
+Getadadjoke.com is a web application where you can get a dad joke! The website has the following features:
+* see all jokes on the home page
+* get a random dad joke
+* search for joke
+* view jokes on a dedicated joke page
+* copy joke text
+* share joke link
+* save a joke by making it a favorite
+* viewing all favorite jokes
 
-## Development server
+Getadadjoke.com is built with Angular and uses the API from [icanhazdadjoke API](https://icanhazdadjoke.com/).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Build process
 
-## Code scaffolding
+View the thought process behind building this application [here](GetADadJoke.com%20Thought%20Process.pdf).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Installation
 
-## Build
+### Prerequisites
+- **Node.js**
+- **Angular CLI**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Steps
+1. **Clone the repository**:
 
-## Running unit tests
+   ```bash
+   git clone https://github.com/your-username/getadadjoke.git
+   cd getadadjoke
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. **Install dependencies**:
 
-## Running end-to-end tests
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. **Run the development server**:
 
-## Further help
+   ```bash
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. **Open the app in your browser**:
+
+   Navigate to `http://localhost:4200/` to view the app in action.
+
+
+## Testing
+
+To run the test suite, execute the following command:
+
+```bash
+ng test
+```
+
+## Usage
+
+1. **Home Page**: View all dadjokes available on the home page.
+2. **Search Jokes**: Use the search bar to find jokes by keyword.
+3. **Favorites**: Click the heart icon next to a joke to mark it as a favorite. Access your favorite jokes through the "Favorites" page.
+4. **Share & Copy**: Use the share and copy buttons to share or copy the joke to your clipboard.
