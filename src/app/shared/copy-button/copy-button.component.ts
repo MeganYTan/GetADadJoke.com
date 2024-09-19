@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-copy-button',
-  standalone: true,
-  imports: [],
   templateUrl: './copy-button.component.html',
   styleUrl: './copy-button.component.css'
 })
 export class CopyButtonComponent {
-
+  @Input() jokeText: string = '';
+  copyJoke() {
+    if (this.jokeText) {
+      navigator.clipboard.writeText(this.jokeText);
+    }
+  }
 }
