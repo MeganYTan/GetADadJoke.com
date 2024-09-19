@@ -1,6 +1,6 @@
-# Getadadjoke
+# GetADadJoke
 
-Getadadjoke.com is a web application where you can get a dad joke! The website has the following features:
+GetADadJoke.com is a web application where you can get a dad joke! The website has the following features:
 * see all jokes on the home page
 * get a random dad joke
 * search for joke
@@ -10,7 +10,9 @@ Getadadjoke.com is a web application where you can get a dad joke! The website h
 * save a joke by making it a favorite
 * viewing all favorite jokes
 
-Getadadjoke.com is built with Angular and uses the API from [icanhazdadjoke API](https://icanhazdadjoke.com/).
+GetADadJoke.com is built with Angular and uses the API from [icanhazdadjoke API](https://icanhazdadjoke.com/).
+
+Access GetADadJoke.com on GitHub Pages [here](https://meganytan.github.io/GetADadJoke.com/).
 
 # Build process
 

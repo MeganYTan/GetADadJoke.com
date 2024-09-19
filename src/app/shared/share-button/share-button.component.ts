@@ -11,13 +11,8 @@ export class ShareButtonComponent {
     private route: ActivatedRoute
   ) {}
   shareJoke() {
-    const urlJokeId = this.route.snapshot.paramMap.get('jokeId');
-    if (urlJokeId) {
-      // just share the url
-      navigator.clipboard.writeText(window.location.href);
-    } else {
-      // get permanent url
-      navigator.clipboard.writeText(`${window.location.origin}/joke/${this.jokeId}`);
-    }
+    const isGitHubPages = window.location.pathname.includes('/GetADadJoke.com');
+    const baseUrl = isGitHubPages ? `${window.location.origin}/GetADadJoke.com` : `${window.location.origin}`;
+    navigator.clipboard.writeText(`${baseUrl}/joke/${this.jokeId}`);
   }
 }
