@@ -21,7 +21,7 @@ export class JokeHttpService {
   }
 
   getJokeById(jokeId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${jokeId}`, {headers: this.headers});
+    return this.http.get(`${this.apiUrl}/j/${jokeId}`, {headers: this.headers});
   }
 
 }
