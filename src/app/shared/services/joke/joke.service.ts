@@ -7,6 +7,7 @@ import { Joke } from '../../../models/joke.model';
 export class JokeService {
   private currentJokeId: string | null = null;
   private currentJoke: Joke | null = null;
+  private jokeList: Joke[] = [];
   constructor() { 
   }
   getCurrentJokeId(): string | null {
@@ -20,6 +21,14 @@ export class JokeService {
   }
   setCurrentJoke(joke: Joke): void {
     this.currentJoke = joke;
+  }
+
+  getJokeList(): Joke[] {
+    return this.jokeList;
+  }
+
+  setJokeList(jokeList: Joke[]): void {
+    this.jokeList = jokeList;
   }
 
 }

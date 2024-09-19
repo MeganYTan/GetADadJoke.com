@@ -4,6 +4,9 @@ import { RandomJokeButtonContentComponent } from './random-joke-button/random-jo
 import { FavoriteButtonComponent } from './favorite-button/favorite-button.component';
 import { CopyButtonComponent } from './copy-button/copy-button.component';
 import { ShareButtonComponent } from './share-button/share-button.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { JokeListComponent } from './joke-list/joke-list.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,16 +15,20 @@ import { ShareButtonComponent } from './share-button/share-button.component';
     RandomJokeButtonContentComponent,
     FavoriteButtonComponent,
     CopyButtonComponent,
-    ShareButtonComponent
+    ShareButtonComponent,
+    JokeListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgxPaginationModule,
+    FormsModule,
   ],
   exports: [
     RandomJokeButtonContentComponent,
     FavoriteButtonComponent,
     CopyButtonComponent,
-    ShareButtonComponent
+    ShareButtonComponent,
+    JokeListComponent
   ]
 })
 export class SharedModule { }
