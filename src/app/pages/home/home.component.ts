@@ -4,9 +4,12 @@ import { JokeHttpService } from '../../shared/services/joke-http/joke-http.servi
 import { JokeSearchResponse } from '../../models/joke-search.model';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Joke } from '../../models/joke.model';
 import { CommonModule } from '@angular/common';
+import { IJokeListInputConfiguration } from '../../shared/joke-list/joke-list-input-config.model';
 
+/**
+ * HomeComponent is the home page and the search results page.
+ */
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,35 +18,45 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   jokeSearchResponse: JokeSearchResponse | null = null;
-  jokeList: Joke[] = [];
-  page: number = 1;
-  itemsPerPage: number = 15;
-  totalItems: number = 1;
   term: string = '';
+  paginationConfiguration: IJokeListInputConfiguration = {
+    jokeList: [],
+    page: 1,
+    totalItems : 1
+  }
+  
   constructor(
     private jokeHttpService: JokeHttpService,
     private activatedRoute: ActivatedRoute
   ) { }
   ngOnInit(): void {
-    
+    // Subscribe to query parameters changes in the route to calls the API with the new search term
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.term = queryParams['term'] || '';
-      this.page = 1;
+      // reset the page to 1 when new term is search for
+      this.paginationConfiguration.page = 1;
       this.searchJokes();
     });
     
   }
-  onPageChange($event: any): void {
-    this.page = $event;
+
+  /**
+   * onPageChange function is called by the EventEmitter of the child component
+   * @param $event 
+   */
+  onPageChange($event: number): void {
+    this.paginationConfiguration.page = $event;
     this.searchJokes();
   }
 
   searchJokes(): void {
-    this.jokeHttpService.searchJokes(this.term, this.page).subscribe((data) => {
+    this.jokeHttpService.searchJokes(this.term, this.paginationConfiguration.page).subscribe((data) => {
       this.jokeSearchResponse = data;
-      this.page = this.jokeSearchResponse?.current_page || 1;
-      this.totalItems = this.jokeSearchResponse?.total_jokes || 1;
-      this.jokeList = this.jokeSearchResponse?.results || [];
+      this.paginationConfiguration = {
+        page: this.jokeSearchResponse?.current_page || 1,
+        totalItems: this.jokeSearchResponse?.total_jokes || 1,
+        jokeList: this.jokeSearchResponse?.results || []
+      }
     });
   }
 }

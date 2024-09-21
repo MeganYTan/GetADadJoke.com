@@ -1,31 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../shared/services/favorites/favorites.service';
-import { Joke } from '../../models/joke.model';
 import { SharedModule } from '../../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
+import { IJokeListInputConfiguration } from '../../shared/joke-list/joke-list-input-config.model';
 
+/**
+ * FavoritesComponent is the component for the Favorites page
+ */
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [SharedModule, NgxPaginationModule, CommonModule, RouterModule],
+  imports: [SharedModule, NgxPaginationModule, CommonModule, RouterModule, HomeComponent],
   templateUrl: './favorites.component.html',
 })
 export class FavoritesComponent implements OnInit{
-  jokeList: Joke[] = [];
-  itemsPerPage: number = 15;
-  page: number = 1;
-  totalItems: number = 1;
+  paginationConfiguration: IJokeListInputConfiguration = {
+    jokeList: [],
+    page: 1,
+    totalItems : 1
+  }
   constructor(
     private favoritesService: FavoritesService
   ) {}
   ngOnInit(): void {
-      this.jokeList = this.favoritesService.getFavoritesList();
-      this.totalItems = this.jokeList.length;
-      console.log(this.jokeList)
-  }
-  onPageChange($event: any) {
-    this.page = $event;
+      this.paginationConfiguration.jokeList = this.favoritesService.getFavoritesList();
+      this.paginationConfiguration.totalItems = this.paginationConfiguration.jokeList.length;
   }
 }
