@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * PageNotFoundComponent displays a message when a user navigates to a non-existent route.
+ */
 @Component({
   selector: 'app-page-not-found',
   standalone: true,

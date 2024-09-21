@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Joke } from '../../../models/joke.model';
 
+/**
+ * FavoritesService keeps track of and manage jokes that are favorited. 
+ * It uses localStorage with the 'joke-favorites' key to store a list of favorited jokes
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +21,7 @@ export class FavoritesService {
   }
 
   getFavoritesList(): Joke[] {
-    return Object.entries(this.favoritesMap).map(([key, value]) => ({id: key, joke: value}))
+    return Object.entries(this.favoritesMap).map(([key, value]) => ({id: key, joke: value}));
   }
 
   isFavorite(id: string): boolean {

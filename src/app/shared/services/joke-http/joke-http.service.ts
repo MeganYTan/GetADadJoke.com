@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+/**
+ * JokeHttpService makes the HTTP requests to the icanhazdadjoke API
+ */
 @Injectable({
   providedIn: 'root'
 })

@@ -6,7 +6,9 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 
-
+/**
+ * LayoutModule contains the header and footer of the application
+ */
 @NgModule({
   declarations: [
     HeaderComponent,

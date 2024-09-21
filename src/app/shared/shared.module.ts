@@ -9,13 +9,13 @@ import { HideElementDirective } from './directives/app-hide-element.directive';
 import { JokeListComponent } from './joke-list/joke-list.component';
 import { RouterModule } from '@angular/router';
 
-
-
+/**
+ * SharedModule contains the shared components of the application
+ */
 @NgModule({
   declarations: [
     FavoriteButtonComponent,
     CopyButtonComponent,
-    ShareButtonComponent,
     ShareButtonComponent,
     HideElementDirective,
     JokeListComponent
@@ -29,7 +29,6 @@ import { RouterModule } from '@angular/router';
   exports: [
     FavoriteButtonComponent,
     CopyButtonComponent,
-    ShareButtonComponent,
     ShareButtonComponent,
     JokeListComponent
   ]

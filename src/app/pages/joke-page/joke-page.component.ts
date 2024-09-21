@@ -7,6 +7,10 @@ import { JokeHttpService } from '../../shared/services/joke-http/joke-http.servi
 import { Subscription } from 'rxjs';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
+/**
+ * JokePageComponent is the component showing individual jokes. It is associated with the /joke route
+ * - `routerSubscription`: subscripes to router events to check if the route has been called again so it can load a new joke
+ */
 @Component({
   selector: 'app-joke-page',
   standalone: true,
@@ -31,9 +35,9 @@ export class JokePageComponent implements OnInit, OnDestroy {
   loadJoke(): void {
     var jokeId = this.route.snapshot.paramMap.get('id');
     if(jokeId) {
+      // get the joke associated with the id in the route
       this.jokeHttpService.getJokeById(jokeId).subscribe((data) => {
         this.joke = data.status === 404 ? null : data;
-        console.log(this.joke);
       })
     } else {
       // get a random joke
