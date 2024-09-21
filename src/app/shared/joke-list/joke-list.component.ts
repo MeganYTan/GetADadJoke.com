@@ -12,7 +12,7 @@ import { IJokeListInputConfiguration } from './joke-list-input-config.model';
 export class JokeListComponent {
   @Input() paginationConfiguration: IJokeListInputConfiguration = {
     page: 1,
-    totalItems: 1,
+    totalItems: 0,
     jokeList: []
   };
   @Output() pageChangedEvent: EventEmitter<number> = new EventEmitter<number>();

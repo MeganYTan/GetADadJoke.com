@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   paginationConfiguration: IJokeListInputConfiguration = {
     jokeList: [],
     page: 1,
-    totalItems : 1
+    totalItems : 0
   }
   
   constructor(
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
       this.jokeSearchResponse = data;
       this.paginationConfiguration = {
         page: this.jokeSearchResponse?.current_page || 1,
-        totalItems: this.jokeSearchResponse?.total_jokes || 1,
+        totalItems: this.jokeSearchResponse?.total_jokes || 0,
         jokeList: this.jokeSearchResponse?.results || []
       }
     });

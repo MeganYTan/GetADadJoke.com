@@ -1,21 +1,26 @@
-<div class="px-3">
-    <div
-        *ngFor="let joke of paginationConfiguration.jokeList | paginate: { itemsPerPage: itemsPerPage, currentPage: paginationConfiguration.page, totalItems: paginationConfiguration.totalItems }">
-        <div class="d-flex justify-content-between align-items-center joke-list-item">
-            <a routerLink="/joke/{{joke.id}}">{{ joke.joke }}</a>
-            <div id="buttons-holder" class="d-flex column-gap-1">
-                <app-favorite-button [joke]="joke" [shouldHideText]="true"></app-favorite-button>
-                <app-share-button [jokeId]="joke.id" [shouldHideText]="true"></app-share-button>
-                <app-copy-button [jokeText]="joke.joke" [shouldHideText]="true"></app-copy-button>
+<div *ngIf="paginationConfiguration.totalItems === 0; else table">
+    <div class = "text-center">No items in this list</div>
+</div>
+<ng-template #table>
+    <div>
+        <div
+            *ngFor="let joke of paginationConfiguration.jokeList | paginate: { itemsPerPage: itemsPerPage, currentPage: paginationConfiguration.page, totalItems: paginationConfiguration.totalItems }">
+            <div class="d-flex justify-content-between align-items-center joke-list-item">
+                <a routerLink="/joke/{{joke.id}}">{{ joke.joke }}</a>
+                <div id="buttons-holder" class="d-flex column-gap-1">
+                    <app-favorite-button [joke]="joke" [shouldHideText]="true"></app-favorite-button>
+                    <app-share-button [jokeId]="joke.id" [shouldHideText]="true"></app-share-button>
+                    <app-copy-button [jokeText]="joke.joke" [shouldHideText]="true"></app-copy-button>
+                </div>
+            </div>
+            <hr class="my-2">
+        </div>
+        <div class="d-flex align-items-start justify-content-center">
+            <div>
+                <pagination-controls (pageChange)="onPageChange($event)">
+                </pagination-controls>
             </div>
         </div>
-        <hr class="my-2">
-    </div>
-    <div class="d-flex align-items-start justify-content-center">
-        <div>
-            <pagination-controls (pageChange)="onPageChange($event)">
-            </pagination-controls>
-        </div>
-    </div>
 
-</div>
+    </div>
+</ng-template>

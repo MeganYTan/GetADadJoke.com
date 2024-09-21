@@ -1,4 +1,4 @@
-<div *ngIf="joke" class = "text-center">
+<div *ngIf="joke; else notFound" class = "text-center">
     <div>
         {{joke.joke}}
     </div>
@@ -10,3 +10,6 @@
         </div>
     </div>
 </div>
+<ng-template #notFound>
+    <app-page-not-found></app-page-not-found>
+</ng-template>
