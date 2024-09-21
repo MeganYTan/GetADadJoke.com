@@ -5,6 +5,7 @@ import { CopyButtonComponent } from './copy-button/copy-button.component';
 import { ShareButtonComponent } from './share-button/share-button.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { HideElementDirective } from './directives/app-hide-element.directive';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     FavoriteButtonComponent,
     CopyButtonComponent,
     ShareButtonComponent,
-    ShareButtonComponent
+    ShareButtonComponent,
+    HideElementDirective
   ],
   imports: [
     CommonModule,

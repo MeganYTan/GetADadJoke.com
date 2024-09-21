@@ -1,4 +1,4 @@
 <button class="btn btn-outline-primary" (click) = "addToFavorite()">
     <i class="bi" [ngClass] ="isFavorite ? 'bi-heart-fill' : 'bi-heart'"></i>
-    Favorite
+    <span [appHideElement]="shouldHideText">Favorite</span>
 </button>

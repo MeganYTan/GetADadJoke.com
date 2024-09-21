@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ShareButtonComponent {
   @Input() jokeId: string = '';
+  @Input() shouldHideText: boolean = false;
   constructor(
     private route: ActivatedRoute
   ) {}

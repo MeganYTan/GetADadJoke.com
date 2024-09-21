@@ -8,6 +8,7 @@ import { Joke } from '../../models/joke.model';
 })
 export class FavoriteButtonComponent implements OnInit{
   @Input() joke!: Joke;
+  @Input() shouldHideText: boolean = false;
   isFavorite: boolean = false;
   constructor(
     private favoritesService: FavoritesService

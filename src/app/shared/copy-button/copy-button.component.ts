@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CopyButtonComponent {
   @Input() jokeText: string = '';
+  @Input() shouldHideText: boolean = false;
   copyJoke() {
     if (this.jokeText) {
       navigator.clipboard.writeText(this.jokeText);
