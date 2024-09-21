@@ -26,7 +26,14 @@ export class FavoritesComponent implements OnInit{
     private favoritesService: FavoritesService
   ) {}
   ngOnInit(): void {
-      this.paginationConfiguration.jokeList = this.favoritesService.getFavoritesList();
-      this.paginationConfiguration.totalItems = this.paginationConfiguration.jokeList.length;
+      this.getFavoriteJokes();
+      
+  }
+  refreshFavorites(): void {
+    this.getFavoriteJokes();
+  }
+  getFavoriteJokes(): void {
+    this.paginationConfiguration.jokeList = this.favoritesService.getFavoritesList();
+    this.paginationConfiguration.totalItems = this.paginationConfiguration.jokeList.length;
   }
 }
