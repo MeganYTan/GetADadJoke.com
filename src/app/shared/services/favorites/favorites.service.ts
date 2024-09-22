@@ -28,13 +28,17 @@ export class FavoritesService {
     return this.favoritesMap.hasOwnProperty(id);
   }
 
-  addFavorite(id: string, jokeText: string): void {
+  private addFavorite(id: string, jokeText: string): void {
     this.favoritesMap[id] = jokeText;
     this.saveToLocalStorage();
   }
 
-  removeFavorite(id: string): void {
+  private removeFavorite(id: string): void {
     delete this.favoritesMap[id];
     this.saveToLocalStorage();
+  }
+
+  toggleFavorite(joke: Joke): void {
+    this.isFavorite(joke.id) ? this.removeFavorite(joke.id) : this.addFavorite(joke.id, joke.joke);
   }
 }

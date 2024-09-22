@@ -23,7 +23,7 @@ export class FavoriteButtonComponent implements OnInit{
   }
 
   addToFavorite(): void {
-    this.isFavorite ? this.favoritesService.removeFavorite(this.joke.id) : this.favoritesService.addFavorite(this.joke.id, this.joke.joke);
+    this.favoritesService.toggleFavorite(this.joke);
     this.isFavorite = ! this.isFavorite;
   }
 }

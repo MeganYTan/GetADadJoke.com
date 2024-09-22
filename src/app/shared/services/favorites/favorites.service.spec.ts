@@ -22,21 +22,26 @@ describe('FavoritesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
   it('should initialize values from localStorage', () => {
     expect(mockGetItem).toHaveBeenCalledWith('joke-favorites');
     expect(service.getFavoritesList()).toEqual([mockJoke1]);
   });
-  it('should add joke to favorites and store it in localStorage', () => {
-    service.addFavorite(mockJoke2.id,mockJoke2.joke);
+
+  it('should add joke to favorites and store it in localStorage if toggleFavorite is called and joke is not a favorite', () => {
+    service.toggleFavorite(mockJoke2);
     expect(mockSetItem).toHaveBeenCalledWith('joke-favorites', JSON.stringify({'1': mockJoke1.joke, '2': mockJoke2.joke}));
   });
+
   it('should remove joke from favorites and update localStorage', () => {
-    service.removeFavorite(mockJoke1.id);
+    service.toggleFavorite(mockJoke1);
     expect(mockSetItem).toHaveBeenCalledWith('joke-favorites', '{}');
   });
+
   it('should return true if joke is a favorite', () => {
     expect(service.isFavorite(mockJoke1.id)).toBeTrue();
   });
+  
   it('should return false if joke is not a favorite', () => {
     expect(service.isFavorite(mockJoke2.id)).toBeFalse();
   });

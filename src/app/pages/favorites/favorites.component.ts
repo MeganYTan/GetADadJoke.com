@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../shared/services/favorites/favorites.service';
 import { SharedModule } from '../../shared/shared.module';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
 import { IJokeListInputConfiguration } from '../../shared/joke-list/joke-list-input-config.model';
 
 /**
@@ -13,7 +9,7 @@ import { IJokeListInputConfiguration } from '../../shared/joke-list/joke-list-in
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [SharedModule, NgxPaginationModule, CommonModule, RouterModule, HomeComponent],
+  imports: [SharedModule],
   templateUrl: './favorites.component.html',
 })
 export class FavoritesComponent implements OnInit{

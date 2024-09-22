@@ -1,9 +1,9 @@
 <div *ngIf="paginationConfiguration.totalItems === 0; else table">
-    <div class = "text-center">No items in this list</div>
+    <div class = "text-center" id="no-items-message">No items in this list</div>
 </div>
 <ng-template #table>
     <div>
-        <div
+        <div class = "joke-item-wrapper"
             *ngFor="let joke of paginationConfiguration.jokeList | paginate: { itemsPerPage: itemsPerPage, currentPage: paginationConfiguration.page, totalItems: paginationConfiguration.totalItems }">
             <div class="d-flex justify-content-between align-items-center joke-list-item">
                 <a routerLink="/joke/{{joke.id}}">{{ joke.joke }}</a>

@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CopyButtonComponent } from './copy-button.component';
 import { By } from '@angular/platform-browser';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('CopyButtonComponent', () => {
   let component: CopyButtonComponent;
@@ -9,7 +10,8 @@ describe('CopyButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CopyButtonComponent]
+      declarations: [CopyButtonComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 

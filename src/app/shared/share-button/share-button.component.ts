@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-share-button',
@@ -8,9 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ShareButtonComponent {
   @Input() jokeId: string = '';
   @Input() shouldHideText: boolean = false;
-  constructor(
-    private route: ActivatedRoute
-  ) {}
+  constructor() {}
   shareJoke() {
     const isGitHubPages = window.location.pathname.includes('/GetADadJoke.com');
     const baseUrl = isGitHubPages ? `${window.location.origin}/GetADadJoke.com` : `${window.location.origin}`;

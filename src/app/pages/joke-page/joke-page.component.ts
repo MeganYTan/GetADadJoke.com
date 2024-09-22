@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationSkipped, NavigationStart, Router } from '@angular/router';
 import { Joke } from '../../models/joke.model';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 export class JokePageComponent implements OnInit, OnDestroy {
   joke: Joke | null = null;
   routerSubscription!: Subscription;
+  jokeId:any = null;
   constructor(
     private jokeHttpService: JokeHttpService,
     private route: ActivatedRoute,
@@ -27,13 +28,18 @@ export class JokePageComponent implements OnInit, OnDestroy {
   ) { }
   ngOnInit(): void {
     this.loadJoke();
+    // reloadjoke when user navigates to /joke route from /joke route 
     this.routerSubscription = this.router.events
-      .subscribe(() => {
-        this.loadJoke();
+      .subscribe((event) => {
+        if (event instanceof NavigationSkipped) {
+          this.loadJoke();
+        }
       });
   }
   loadJoke(): void {
+    
     var jokeId = this.route.snapshot.paramMap.get('id');
+    this.jokeId = jokeId;
     if(jokeId) {
       // get the joke associated with the id in the route
       this.jokeHttpService.getJokeById(jokeId).subscribe((data) => {

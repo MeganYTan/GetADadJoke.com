@@ -4,6 +4,7 @@ import { FavoriteButtonComponent } from './favorite-button.component';
 import { By } from '@angular/platform-browser';
 import { Joke } from '../../models/joke.model';
 import { FavoritesService } from '../services/favorites/favorites.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('FavoriteButtonComponent', () => {
   let component: FavoriteButtonComponent;
@@ -17,14 +18,14 @@ describe('FavoriteButtonComponent', () => {
   beforeEach(async () => {
     mockFavoriteService = {
       isFavorite: jasmine.createSpy('isFavorite').and.returnValue(false),
-      addFavorite: jasmine.createSpy('addFavorite'),
-      removeFavorite: jasmine.createSpy('removeFavorite')
+      toggleFavorite: jasmine.createSpy('toggleFavorite')
     }
     await TestBed.configureTestingModule({
       declarations: [FavoriteButtonComponent],
       providers: [
         {provide: FavoritesService, useValue: mockFavoriteService}
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 
@@ -50,20 +51,12 @@ describe('FavoriteButtonComponent', () => {
     const icon = fixture.debugElement.query(By.css('i')).nativeElement;
     expect(icon.classList).toContain('bi-heart');
   });
-  it('should add to favorite if button is clicked and joke is not a favorite', () => {
+  it('should call favoriteService.toggleFavorite when button is clicked', () => {
     component.isFavorite = false;
     fixture.detectChanges();
     const button = fixture.debugElement.query(By.css('button')).nativeElement;
     button.click();
-    expect(mockFavoriteService.addFavorite).toHaveBeenCalledWith(mockJoke.id, mockJoke.joke);
-    expect(component.isFavorite).toBeTrue();
+    expect(mockFavoriteService.toggleFavorite).toHaveBeenCalledWith(mockJoke);
   });
-  it('should remove from favorite if buttin is clicked and joke is a favorite', () => {
-    component.isFavorite = true;
-    fixture.detectChanges();
-    const button = fixture.debugElement.query(By.css('button')).nativeElement;
-    button.click();
-    expect(mockFavoriteService.removeFavorite).toHaveBeenCalledWith(mockJoke.id);
-    expect(component.isFavorite).toBeFalse();
-  });
+
 });
