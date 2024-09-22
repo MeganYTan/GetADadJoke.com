@@ -4,7 +4,6 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    standalone: true,
     template: `<span [appHideElement]="shouldHideText">Copy</span>`,
     imports: [HideElementDirective],
 })
@@ -32,12 +31,14 @@ describe('HideElementDirective', () => {
         expect(component).toBeTruthy();
     });
     it('should hide text on medium and smaller screen sizes if shouldHideText is true', () => {
-        let debugEle = fixture.debugElement.query(By.css('span'));
+        debugEle = fixture.debugElement.query(By.css('span'));
         expect(debugEle.nativeElement.classList).toContain('d-none');
         expect(debugEle.nativeElement.classList).toContain('d-lg-inline');
     });
     it('should show text on medium and smaller screen sizes if shouldHideText is false', () => {
-        let debugEle = fixture.debugElement.query(By.css('span'));
+        component.shouldHideText = false;
+        fixture.detectChanges();
+        debugEle = fixture.debugElement.query(By.css('span'));
         expect(debugEle.nativeElement.classList).not.toContain('d-none');
         expect(debugEle.nativeElement.classList).not.toContain('d-lg-inline');
     });
