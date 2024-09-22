@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
-  term: string = "";
+  term: string = '';
   constructor(
     private router: Router
   ){}

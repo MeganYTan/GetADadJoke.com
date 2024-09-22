@@ -12,7 +12,6 @@ import { Joke } from '../../models/joke.model';
 })
 export class JokeService {
   currentJoke: Joke | null = null;
-  constructor() { }
 
   setCurrentJoke(joke: Joke): void {
     this.currentJoke = joke;

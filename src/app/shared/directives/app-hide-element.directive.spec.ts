@@ -4,7 +4,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template: `<span [appHideElement]="shouldHideText">Copy</span>`,
+    template: '<span [appHideElement]="shouldHideText">Copy</span>',
     imports: [HideElementDirective],
 })
 class TestComponent {

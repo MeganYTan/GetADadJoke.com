@@ -1,4 +1,4 @@
-import { Joke } from "../../models/joke.model";
+import { Joke } from '../../models/joke.model';
 /**
  * Configuration for the Input of JokeListComponent
  */

@@ -16,8 +16,8 @@ describe('JokeServiceService', () => {
 
   it('should be able to get and set currentJoke', () => {
     const joke = {
-      id: "1",
-      joke: "Sample Joke"
+      id: '1',
+      joke: 'Sample Joke'
     };
     service.setCurrentJoke(joke);
     expect(service.getCurrentJoke()).toEqual(joke);

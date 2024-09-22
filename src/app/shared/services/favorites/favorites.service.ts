@@ -10,7 +10,7 @@ import { Joke } from '../../../models/joke.model';
 })
 export class FavoritesService {
   private favoritesKey = 'joke-favorites'; 
-  private favoritesMap: { [id: string]: string } = {};
+  private favoritesMap: Record<string, string> = {};
   constructor() { 
     const storedFavorites = localStorage.getItem(this.favoritesKey);
     this.favoritesMap = storedFavorites ? JSON.parse(storedFavorites) : {};
@@ -25,7 +25,7 @@ export class FavoritesService {
   }
 
   isFavorite(id: string): boolean {
-    return this.favoritesMap.hasOwnProperty(id);
+    return Object.hasOwn(this.favoritesMap, id);
   }
 
   private addFavorite(id: string, jokeText: string): void {
@@ -39,6 +39,10 @@ export class FavoritesService {
   }
 
   toggleFavorite(joke: Joke): void {
-    this.isFavorite(joke.id) ? this.removeFavorite(joke.id) : this.addFavorite(joke.id, joke.joke);
+    if (this.isFavorite(joke.id)) {
+      this.removeFavorite(joke.id);
+    } else {
+      this.addFavorite(joke.id, joke.joke);
+    }
   }
 }

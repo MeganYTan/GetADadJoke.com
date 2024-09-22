@@ -14,7 +14,7 @@ describe('JokeListComponent', () => {
   let fixture: ComponentFixture<JokeListComponent>;
 
   let router: Router;
-  let mockJokes: Joke[] = [
+  const mockJokes: Joke[] = [
     { id: '1', joke: 'Joke 1', status: 200 },
     { id: '2', joke: 'Joke 2', status: 200 },
     { id: '3', joke: 'Joke 3', status: 200 },
@@ -32,7 +32,7 @@ describe('JokeListComponent', () => {
     { id: '15', joke: 'Joke 15', status: 200 },
     { id: '16', joke: 'Joke 16', status: 200 },
   ];
-  let paginationConfiguration: IJokeListInputConfiguration = {
+  const paginationConfiguration: IJokeListInputConfiguration = {
     page: 1,
     totalItems: mockJokes.length,
     jokeList: mockJokes

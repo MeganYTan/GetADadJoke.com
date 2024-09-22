@@ -33,7 +33,7 @@ describe('CopyButtonComponent', () => {
   });
 
   it('should copy jokeText to clipboard when copyJoke is called', () => {
-    const jokeText = "Sample Joke"
+    const jokeText = 'Sample Joke'
     component.jokeText = jokeText;
     spyOn(navigator.clipboard, 'writeText');
     component.copyJoke();

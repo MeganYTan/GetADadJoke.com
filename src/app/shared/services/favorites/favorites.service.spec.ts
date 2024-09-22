@@ -6,8 +6,8 @@ describe('FavoritesService', () => {
   let service: FavoritesService;
   let mockGetItem: jasmine.Spy;
   let mockSetItem: jasmine.Spy;
-  const mockJoke1 = {id: '1', joke: "Joke 1"};
-  const mockJoke2 = {id: '2', joke: "Joke 2"};
+  const mockJoke1 = {id: '1', joke: 'Joke 1'};
+  const mockJoke2 = {id: '2', joke: 'Joke 2'};
   const favoritesMap = {'1': mockJoke1.joke};
   beforeEach(() => {
     mockGetItem = spyOn(localStorage, 'getItem').and.callFake((key: string) => {

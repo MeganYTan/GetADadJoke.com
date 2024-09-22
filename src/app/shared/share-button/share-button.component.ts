@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core';
 export class ShareButtonComponent {
   @Input() jokeId: string = '';
   @Input() shouldHideText: boolean = false;
-  constructor() {}
   shareJoke() {
     const isGitHubPages = window.location.pathname.includes('/GetADadJoke.com');
     const baseUrl = isGitHubPages ? `${window.location.origin}/GetADadJoke.com` : `${window.location.origin}`;
