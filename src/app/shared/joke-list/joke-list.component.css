@@ -1,3 +1,7 @@
-#buttons-holder{
+#buttons-holder {
     min-width:fit-content;
+}
+
+#link {
+    cursor:pointer;
 }
