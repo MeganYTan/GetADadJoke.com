@@ -1,86 +1,94 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute, Router, NavigationSkipped } from '@angular/router';
+import { BehaviorSubject, of, Subject } from 'rxjs';
 import { JokePageComponent } from './joke-page.component';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
 import { JokeHttpService } from '../../shared/services/joke-http/joke-http.service';
+import { JokeService } from '../../shared/services/joke.service';
 
 describe('JokePageComponent', () => {
   let component: JokePageComponent;
   let fixture: ComponentFixture<JokePageComponent>;
+  let jokeHttpServiceMock: any;
+  let jokeServiceMock: any;
+  let routeMock: any;
+  let routerMock: any;
+
   const mockJokes = [
     { id: '1', joke: 'Joke 1', status: 200 },
     { id: '2', joke: 'Joke 2', status: 200 },
   ];
-  const jokeHttpServiceMock = {
-    getARandomJoke: jasmine.createSpy('getARandomJoke').and.returnValue(of(mockJokes[0])),
-    getJokeById: jasmine.createSpy('getJokeById').and.returnValue(of(mockJokes[1]))
-  };
-  const mockActivatedRouteSnapshotWithId = {
-    snapshot: {
-      paramMap: {
-        get: (key: string) => key === 'id' ? '1' : null
-      }
-    }
-  };
-  const mockActivatedRouteSnapshotWithoutId = {
-    snapshot: {
-      paramMap: {
-        get: (key: string) => null
-      }
-    }
-  };
-  afterEach(() => {
-    jokeHttpServiceMock.getARandomJoke.calls.reset();
-    jokeHttpServiceMock.getJokeById.calls.reset();
+
+  beforeEach(async () => {
+    jokeHttpServiceMock = {
+      getARandomJoke: jasmine.createSpy('getARandomJoke').and.returnValue(of(mockJokes[0])),
+      getJokeById: jasmine.createSpy('getJokeById').and.returnValue(of(mockJokes[1])),
+    };
+    jokeServiceMock = {
+      getCurrentJoke: jasmine.createSpy('getCurrentJoke').and.returnValue(mockJokes[0]),
+    };
+    routeMock = {
+      paramMap: new BehaviorSubject<any>({ get: (key: string) => null }),
+    };
+    routerMock = {
+      events: new Subject<any>(),
+    };
+
+    await TestBed.configureTestingModule({
+      imports: [JokePageComponent],
+      providers: [
+        { provide: JokeHttpService, useValue: jokeHttpServiceMock },
+        { provide: ActivatedRoute, useValue: routeMock },
+        { provide: Router, useValue: routerMock },
+        { provide: JokeService, useValue: jokeServiceMock },
+      ],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(JokePageComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
-  describe('When Joke ID is in url', () => {
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        imports: [JokePageComponent],
-        providers: [
-          { provide: JokeHttpService, useValue: jokeHttpServiceMock },
-          { provide: ActivatedRoute, useValue: mockActivatedRouteSnapshotWithId },
-        ],
-      })
-        .compileComponents();
 
-      fixture = TestBed.createComponent(JokePageComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
 
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-    it('should getJokeById when joke id is present in URL', () => {
-      expect(jokeHttpServiceMock.getJokeById).toHaveBeenCalledWith('1');
-      expect(jokeHttpServiceMock.getARandomJoke).not.toHaveBeenCalled();
-      expect(component.joke).toEqual(mockJokes[1]);
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
-  describe('When Joke ID is not in url', () => {
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        imports: [JokePageComponent],
-        providers: [
-          { provide: JokeHttpService, useValue: jokeHttpServiceMock },
-          { provide: ActivatedRoute, useValue: mockActivatedRouteSnapshotWithoutId },
-        ],
-      })
-        .compileComponents();
 
-      fixture = TestBed.createComponent(JokePageComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-    it('should getARandomJoke when joke is is not present in URL', () => {
-      console.log('should getARandomJoke joke id: ', component.jokeId);
+  it('should call getJoke when router emits NavigationSkipped event', () => {
+    spyOn(component, 'getJoke');
+    routerMock.events.next(new NavigationSkipped(1, 'joke', ''));
+    expect(component.getJoke).toHaveBeenCalled();
+  });
+
+  it('should call getJoke when "id" in paramMap changes', () => {
+    spyOn(component, 'getJoke');
+    routeMock.paramMap.next({ get: (key: string) => '1' });
+    expect(component.getJoke).toHaveBeenCalled();
+  });
+  describe('when getJoke is called', () => {
+    it('should call getARandomJoke when jokeId is in URL', () => {
+      component.getJoke();
       expect(jokeHttpServiceMock.getJokeById).not.toHaveBeenCalled();
       expect(jokeHttpServiceMock.getARandomJoke).toHaveBeenCalled();
     });
+    it('should call getJokeById when URL id does not match the id of joke in JokeService', () => {
+      jokeHttpServiceMock.getARandomJoke.calls.reset();
+      jokeHttpServiceMock.getJokeById.calls.reset();
+      jokeServiceMock.getCurrentJoke.calls.reset();
+      routeMock.paramMap.next({ get: (key: string) => 'some id' });
+      component.getJoke();
+      expect(jokeHttpServiceMock.getJokeById).toHaveBeenCalled();
+    });
+
+    it('should get joke from JokeService when URL id matches the id of joke in JokeService', async () => {
+      jokeHttpServiceMock.getARandomJoke.calls.reset();
+      jokeHttpServiceMock.getJokeById.calls.reset();
+      jokeServiceMock.getCurrentJoke.calls.reset();
+      routeMock.paramMap.next({ get: (key: string) => mockJokes[0].id });
+      component.getJoke();
+      expect(jokeServiceMock.getCurrentJoke).toHaveBeenCalled();
+      expect(jokeHttpServiceMock.getJokeById).not.toHaveBeenCalled();
+    });
   })
+
 });
+

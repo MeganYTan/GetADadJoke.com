@@ -6,7 +6,7 @@
         <div class = "joke-item-wrapper"
             *ngFor="let joke of paginationConfiguration.jokeList | paginate: { itemsPerPage: itemsPerPage, currentPage: paginationConfiguration.page, totalItems: paginationConfiguration.totalItems }">
             <div class="d-flex justify-content-between align-items-center joke-list-item">
-                <a routerLink="/joke/{{joke.id}}">{{ joke.joke }}</a>
+                <a id="link" (click) = "jokeClicked(joke)" class="link-primary">{{ joke.joke }}</a>
                 <div id="buttons-holder" class="d-flex column-gap-1">
                     <app-favorite-button [joke]="joke" [shouldHideText]="true"></app-favorite-button>
                     <app-share-button [jokeId]="joke.id" [shouldHideText]="true"></app-share-button>
