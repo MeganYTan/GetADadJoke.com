@@ -1,0 +1,32 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' 
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular project
+        run: ng build --configuration production --output-path=docs --base-href /
+
+      - name: Deploy to GitHub Pages
+        run: npx angular-cli-ghpages --dir=docs/browser
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+
