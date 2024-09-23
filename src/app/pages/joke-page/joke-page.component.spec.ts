@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, NavigationSkipped } from '@angular/router';
 import { BehaviorSubject, of, Subject } from 'rxjs';
 import { JokePageComponent } from './joke-page.component';
 import { JokeHttpService } from '../../shared/services/joke-http/joke-http.service';
-import { JokeService } from '../../shared/services/joke.service';
+import { JokeService } from '../../shared/services/joke/joke.service';
 
 describe('JokePageComponent', () => {
   let component: JokePageComponent;

@@ -6,7 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { JokeHttpService } from '../../shared/services/joke-http/joke-http.service';
 import { Subscription } from 'rxjs';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
-import { JokeService } from '../../shared/services/joke.service';
+import { JokeService } from '../../shared/services/joke/joke.service';
 
 /**
  * JokePageComponent is the component showing individual jokes. It is associated with the /joke route

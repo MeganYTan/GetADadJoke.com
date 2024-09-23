@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IJokeListInputConfiguration } from './joke-list-input-config.model';
 import { Joke } from '../../models/joke.model';
 import { Router } from '@angular/router';
-import { JokeService } from '../services/joke.service';
+import { JokeService } from '../services/joke/joke.service';
 
 /**
  * JokeListComponent renders a list of jokes. It receives pagination configuration from the parent to know how many pages to show and which page the user is on.

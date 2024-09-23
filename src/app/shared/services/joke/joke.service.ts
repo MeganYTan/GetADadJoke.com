@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Joke } from '../../models/joke.model';
+import { Joke } from '../../../models/joke.model';
 /**
  * JokeService manages the selected joke between components
  * 
