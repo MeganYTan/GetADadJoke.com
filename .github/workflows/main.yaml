@@ -25,6 +25,11 @@ jobs:
       - name: Build Angular project
         run: npm run build
 
+      - name: Configure Git
+        run: |
+        git config --global user.email "meganytan@gmail.com"
+        git config --global user.name "Megan Tan"
+
       - name: Deploy to GitHub Pages
         run: npx angular-cli-ghpages --dir=dist/browser --no-silent
         env:
