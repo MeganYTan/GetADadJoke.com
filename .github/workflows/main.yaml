@@ -24,10 +24,10 @@ jobs:
         run: npm install
 
       - name: Build Angular project
-        run: npm run build
+        run: npm run build -- --configuration production --output-path=docs --base-href /GetADadJoke.com/
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/browser --no-silent
+        run: npx angular-cli-ghpages --dir=docs/browser --no-silent
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
