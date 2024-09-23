@@ -5,7 +5,7 @@ import { CopyButtonComponent } from './copy-button/copy-button.component';
 import { ShareButtonComponent } from './share-button/share-button.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-import { HideElementDirective } from './directives/app-hide-element.directive';
+import { HideElementDirective } from './directives/hide-element/app-hide-element.directive';
 import { JokeListComponent } from './joke-list/joke-list.component';
 import { RouterModule } from '@angular/router';
 

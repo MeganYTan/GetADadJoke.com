@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HideElementDirective } from '../directives/app-hide-element.directive';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { HideElementDirective } from './app-hide-element.directive';
 
 @Component({
     template: '<span [appHideElement]="shouldHideText">Copy</span>',
