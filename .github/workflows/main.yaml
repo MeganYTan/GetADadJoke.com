@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main 
+      - ci_cd_config
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' 
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular project
+        run: npm run build -- --configuration production --output-path=docs --base-href /GetADadJoke.com/
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Megan Tan"
+          git config --global user.email "meganytan@gmail.com"
+
+      - name: Deploy to GitHub Pages
+        run: npx angular-cli-ghpages --dir=docs/browser --no-silent
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
