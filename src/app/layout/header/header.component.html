@@ -1,30 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid d-flex">
-        <a class="navbar-brand d-none d-lg-block" routerLink="/">GetADadJoke.com</a>
-        <!-- Search Bar -->
-        <div class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "term"  (keydown.enter)="searchJokes()">
-            <button class="btn btn-outline-primary" type="submit" (click) = "searchJokes()">Search</button>
-        </div>
-        <!-- Toggle button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid d-flex">
+            <a class="navbar-brand d-none d-lg-block" routerLink="/">GetADadJoke.com</a>
+            <!-- Search Bar -->
+            <div class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                    [(ngModel)]="term" (keydown.enter)="searchJokes()">
+                <button class="btn btn-outline-primary" type="submit" (click)="searchJokes()">Search</button>
+            </div>
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse flex-grow-0" id="navbarContent">
-            <ul class="navbar-nav">
-                <li class="nav-item d-lg-none">
-                    <a class = "nav-link" routerLink = "/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/favorites">Favorites</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/joke">Random Dad Joke</a>
-                </li>
-            </ul>
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse flex-grow-0" id="navbarContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link" routerLink="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/favorites">Favorites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/joke">Random Dad Joke</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>

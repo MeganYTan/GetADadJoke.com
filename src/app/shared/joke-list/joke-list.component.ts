@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { IJokeListInputConfiguration } from './joke-list-input-config.model';
 import { Joke } from '../../models/joke.model';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ export class JokeListComponent {
     jokeList: []
   };
   @Output() pageChangedEvent: EventEmitter<number> = new EventEmitter<number>();
+  @ViewChild('jokeListWrapper') jokeListWrapper!: ElementRef;
   itemsPerPage: number = 15;
 
   constructor(
@@ -31,6 +32,7 @@ export class JokeListComponent {
    */
   onPageChange($event: number): void {
     this.paginationConfiguration.page = $event;
+    this.jokeListWrapper.nativeElement.scrollTop = 0;
     this.pageChangedEvent.emit($event);
   }
 

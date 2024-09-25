@@ -60,7 +60,7 @@ describe('JokeListComponent', () => {
   });
 
   it('should display 15 jokes when jokeList has more then 15 jokes', () => {
-    const jokeItemWrapper = fixture.debugElement.queryAll(By.css('.joke-item-wrapper'));
+    const jokeItemWrapper = fixture.debugElement.queryAll(By.css('.joke-item-item'));
     expect(jokeItemWrapper.length).toBe(15);
   });
   it('should display number of jokes equal to jokeList length when jokelist has 15 or less jokes', () => {
@@ -70,7 +70,7 @@ describe('JokeListComponent', () => {
       jokeList: mockJokes.slice(0, 5)
     };
     fixture.detectChanges();
-    const jokeItemWrapper = fixture.debugElement.queryAll(By.css('.joke-item-wrapper'));
+    const jokeItemWrapper = fixture.debugElement.queryAll(By.css('.joke-item-item'));
     expect(jokeItemWrapper.length).toBe(5);
   });
   it('should display message when no jokes are in the list', () => {
